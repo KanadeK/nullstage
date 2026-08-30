@@ -3,6 +3,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import pytest
+
 from nullstage.cli import main
 
 
@@ -53,6 +55,29 @@ def test_analyze_writes_complete_bundle(tmp_path: Path, capsys: object) -> None:
     report = json.loads((output / "report.json").read_text(encoding="utf-8"))
     assert report["mode"] == "analyze"
     assert "Artifacts:" in capsys.readouterr().out  # type: ignore[attr-defined]
+
+
+def test_report_directory_inherits_shareable_permissions(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    source = tmp_path / "scenario.json"
+    output = tmp_path / "report"
+    write_scenario(source)
+    created: list[tuple[str, int]] = []
+    original_mkdir = Path.mkdir
+
+    def record_mkdir(
+        path: Path, mode: int = 0o777, parents: bool = False, exist_ok: bool = False
+    ) -> None:
+        created.append((path.name, mode))
+        original_mkdir(path, mode=mode, parents=parents, exist_ok=exist_ok)
+
+    monkeypatch.setattr(Path, "mkdir", record_mkdir)
+
+    assert main(["analyze", str(source), "--output-dir", str(output)]) == 0
+
+    report_modes = [mode for name, mode in created if name == "report"]
+    assert report_modes == [0o755]
 
 
 def test_threshold_failure_keeps_evidence_and_returns_one(tmp_path: Path) -> None:

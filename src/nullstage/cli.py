@@ -6,7 +6,6 @@ import argparse
 import math
 import shutil
 import sys
-import tempfile
 from collections.abc import Sequence
 from pathlib import Path
 
@@ -59,22 +58,19 @@ def _parser() -> argparse.ArgumentParser:
 
 
 def _write_bundle(bundle: OutputBundle, output_dir: Path) -> None:
-    if output_dir.exists():
+    output_dir.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        output_dir.mkdir(mode=0o755)
+    except FileExistsError as error:
         raise ReportWriteError(
             f"output directory already exists: {output_dir}; choose a new path to avoid overwriting"
-        )
-    output_dir.parent.mkdir(parents=True, exist_ok=True)
-    temporary = Path(
-        tempfile.mkdtemp(prefix=f".{output_dir.name}-", dir=str(output_dir.parent.resolve()))
-    )
+        ) from error
     try:
-        (temporary / "report.json").write_text(bundle.json_text, encoding="utf-8", newline="\n")
-        (temporary / "stage.svg").write_text(bundle.svg_text, encoding="utf-8", newline="\n")
-        (temporary / "report.html").write_text(bundle.html_text, encoding="utf-8", newline="\n")
-        temporary.replace(output_dir)
+        (output_dir / "report.json").write_text(bundle.json_text, encoding="utf-8", newline="\n")
+        (output_dir / "stage.svg").write_text(bundle.svg_text, encoding="utf-8", newline="\n")
+        (output_dir / "report.html").write_text(bundle.html_text, encoding="utf-8", newline="\n")
     except OSError:
-        if temporary.exists():
-            shutil.rmtree(temporary)
+        shutil.rmtree(output_dir)
         raise
 
 
