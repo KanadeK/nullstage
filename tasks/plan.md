@@ -44,11 +44,11 @@ all product slices -> examples/docs -> release gate -> CI -> GitHub Release
 
 - [x] Task 5: Add examples, bilingual README, research/model notes, troubleshooting, security, and contribution docs.
 - [x] Task 6: Add a release-equivalent check script, cross-platform CI, tagged release automation, license, changelog, and package metadata.
-- [ ] Task 7: Review all five quality axes, fix required findings, publish, verify remote artifacts, and notify by Gmail.
+- [x] Task 7: Review all five quality axes, fix required findings, publish, verify remote artifacts, and notify by Gmail.
 
 ### Checkpoint: Complete
 
-- [ ] Every success criterion in `docs/spec.md` has current evidence.
+- [x] Every success criterion in `docs/spec.md` has current evidence.
 
 ## Risks and Mitigations
 

@@ -81,8 +81,8 @@
 
 **Acceptance criteria:**
 - [x] Five-axis review has no unresolved Critical/Required finding.
-- [ ] Clean atomic history, author/contributor hygiene, public CI, annotated tag, Release assets/checksums, and fresh downloaded-wheel execution are verified.
-- [ ] Gmail self-notification is sent only after remote verification.
+- [x] Clean atomic history, author/contributor hygiene, public CI, annotated tag, Release assets/checksums, and fresh downloaded-wheel execution are verified.
+- [x] Gmail self-notification is sent only after remote verification.
 
 **Verification:** public repository, Actions, tag, Release API/assets, fresh install, contributor list, and Sent-mail evidence.
 
