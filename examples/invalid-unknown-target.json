@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "stage": {
+    "name": "Broken fixture",
+    "width_m": 4.0,
+    "depth_m": 3.0
+  },
+  "sources": [
+    {
+      "id": "voice",
+      "label": "Voice",
+      "x_m": 2.0,
+      "y_m": 1.5,
+      "level_db": 0.0
+    },
+    {
+      "id": "drums",
+      "label": "Drums",
+      "x_m": 3.0,
+      "y_m": 2.0,
+      "level_db": 8.0
+    }
+  ],
+  "microphones": [
+    {
+      "id": "voice-mic",
+      "label": "Voice mic",
+      "target_source": "missing-source",
+      "pattern": "cardioid",
+      "off_axis_floor_db": -24.0,
+      "x_m": 2.0,
+      "y_m": 1.0,
+      "aim_deg": 90.0,
+      "search": {
+        "move_radius_m": 0.25,
+        "position_step_m": 0.25,
+        "aim_range_deg": 15.0,
+        "aim_step_deg": 15.0,
+        "min_target_distance_m": 0.25,
+        "max_target_distance_m": 1.0
+      }
+    }
+  ]
+}

@@ -13,14 +13,14 @@ NullStage is a geometry preflight, not room-acoustics simulation, a microphone d
 - CPython 3.11–3.14.
 - Standard-library-only runtime (`argparse`, `dataclasses`, `json`, `math`, `pathlib`).
 - Hatchling build backend.
-- Pytest, pytest-cov, Ruff, mypy, and pip-audit as development/release gates.
+- Pytest, pytest-cov, Ruff, mypy, and `uv audit` as development/release gates.
 - GitHub Actions on Ubuntu/Python 3.11 and Windows/Python 3.14.
 
 ## Commands
 
 ```powershell
 # One-time environment synchronization
-uv sync --extra dev --locked
+uv sync --dev --locked
 
 # Analyze the declared layout without changing it
 uv run --no-sync nullstage analyze examples/live-band.json --output-dir out/analyze
@@ -98,4 +98,3 @@ Names include units (`distance_m`, `margin_db`). JSON keys are stable snake_case
 ## Open Questions
 
 No blocking product question remains. The user explicitly authorized independent concept selection and the full repository-to-release lifecycle. The idealized model and its limitations are accepted as v0.1 scope and must remain prominent in every report.
-

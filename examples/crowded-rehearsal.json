@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "stage": {
+    "name": "Crowded rehearsal corner",
+    "width_m": 4.0,
+    "depth_m": 3.0
+  },
+  "sources": [
+    {
+      "id": "voice",
+      "label": "Voice",
+      "x_m": 2.0,
+      "y_m": 1.5,
+      "level_db": 0.0
+    },
+    {
+      "id": "cymbal",
+      "label": "Cymbal",
+      "x_m": 2.8,
+      "y_m": 1.7,
+      "level_db": 10.0
+    }
+  ],
+  "microphones": [
+    {
+      "id": "room-omni",
+      "label": "Shared room microphone",
+      "target_source": "voice",
+      "pattern": "omni",
+      "off_axis_floor_db": -18.0,
+      "x_m": 2.0,
+      "y_m": 0.8,
+      "aim_deg": 90.0,
+      "search": {
+        "move_radius_m": 0.0,
+        "position_step_m": 0.25,
+        "aim_range_deg": 0.0,
+        "aim_step_deg": 15.0,
+        "min_target_distance_m": 0.6,
+        "max_target_distance_m": 1.2
+      }
+    }
+  ]
+}

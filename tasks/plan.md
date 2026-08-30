@@ -24,26 +24,26 @@ all product slices -> examples/docs -> release gate -> CI -> GitHub Release
 
 ### Phase 1: Foundation
 
-- [ ] Task 1: Define domain values, JSON boundary validation, and model math with RED/GREEN tests.
-- [ ] Task 2: Produce a deterministic per-microphone analysis and threshold decision.
+- [x] Task 1: Define domain values, JSON boundary validation, and model math with RED/GREEN tests.
+- [x] Task 2: Produce a deterministic per-microphone analysis and threshold decision.
 
 ### Checkpoint: Foundation
 
-- [ ] Focused tests pass and the included scenario produces a meaningful margin table.
+- [x] Focused tests pass and the included scenario produces a meaningful margin table.
 
 ### Phase 2: Complete User Flow
 
-- [ ] Task 3: Add bounded deterministic optimization and independent exhaustive cross-check.
-- [ ] Task 4: Add JSON, SVG, HTML, and CLI output/exit behavior.
+- [x] Task 3: Add bounded deterministic optimization and independent exhaustive cross-check.
+- [x] Task 4: Add JSON, SVG, HTML, and CLI output/exit behavior.
 
 ### Checkpoint: Complete User Flow
 
-- [ ] Installed-style CLI analyzes, optimizes, fails invalid input, and writes a coherent evidence bundle.
+- [x] Installed-style CLI analyzes, optimizes, fails invalid input, and writes a coherent evidence bundle.
 
 ### Phase 3: Delivery
 
-- [ ] Task 5: Add examples, bilingual README, research/model notes, troubleshooting, security, and contribution docs.
-- [ ] Task 6: Add a release-equivalent check script, cross-platform CI, tagged release automation, license, changelog, and package metadata.
+- [x] Task 5: Add examples, bilingual README, research/model notes, troubleshooting, security, and contribution docs.
+- [x] Task 6: Add a release-equivalent check script, cross-platform CI, tagged release automation, license, changelog, and package metadata.
 - [ ] Task 7: Review all five quality axes, fix required findings, publish, verify remote artifacts, and notify by Gmail.
 
 ### Checkpoint: Complete
@@ -63,4 +63,3 @@ all product slices -> examples/docs -> release gate -> CI -> GitHub Release
 ## Open Questions
 
 None blocking under the user's explicit free-rein authorization.
-

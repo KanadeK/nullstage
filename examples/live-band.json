@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "stage": {
+    "name": "Harbor Room quartet",
+    "width_m": 10.0,
+    "depth_m": 6.0
+  },
+  "sources": [
+    {
+      "id": "lead-voice",
+      "label": "Lead voice",
+      "x_m": 5.0,
+      "y_m": 1.6,
+      "level_db": 0.0
+    },
+    {
+      "id": "drum-kit",
+      "label": "Drum kit",
+      "x_m": 7.5,
+      "y_m": 4.6,
+      "level_db": 12.0
+    },
+    {
+      "id": "guitar-amp",
+      "label": "Guitar amplifier",
+      "x_m": 2.0,
+      "y_m": 4.3,
+      "level_db": 6.0
+    },
+    {
+      "id": "lead-wedge",
+      "label": "Lead floor wedge",
+      "x_m": 5.0,
+      "y_m": 0.55,
+      "level_db": 5.0
+    }
+  ],
+  "microphones": [
+    {
+      "id": "lead-vocal",
+      "label": "Lead vocal mic",
+      "target_source": "lead-voice",
+      "pattern": "cardioid",
+      "off_axis_floor_db": -24.0,
+      "x_m": 5.0,
+      "y_m": 1.05,
+      "aim_deg": 90.0,
+      "search": {
+        "move_radius_m": 0.5,
+        "position_step_m": 0.25,
+        "aim_range_deg": 30.0,
+        "aim_step_deg": 15.0,
+        "min_target_distance_m": 0.35,
+        "max_target_distance_m": 0.9
+      }
+    },
+    {
+      "id": "guitar-close",
+      "label": "Guitar close mic",
+      "target_source": "guitar-amp",
+      "pattern": "supercardioid",
+      "off_axis_floor_db": -22.0,
+      "x_m": 2.0,
+      "y_m": 3.75,
+      "aim_deg": 90.0,
+      "search": {
+        "move_radius_m": 0.5,
+        "position_step_m": 0.25,
+        "aim_range_deg": 30.0,
+        "aim_step_deg": 15.0,
+        "min_target_distance_m": 0.25,
+        "max_target_distance_m": 0.8
+      }
+    },
+    {
+      "id": "drum-overhead",
+      "label": "Drum overhead",
+      "target_source": "drum-kit",
+      "pattern": "cardioid",
+      "off_axis_floor_db": -20.0,
+      "x_m": 7.5,
+      "y_m": 3.9,
+      "aim_deg": 90.0,
+      "search": {
+        "move_radius_m": 0.5,
+        "position_step_m": 0.25,
+        "aim_range_deg": 30.0,
+        "aim_step_deg": 15.0,
+        "min_target_distance_m": 0.5,
+        "max_target_distance_m": 1.2
+      }
+    }
+  ]
+}
