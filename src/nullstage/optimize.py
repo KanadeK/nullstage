@@ -99,8 +99,16 @@ def _optimize_microphone(scenario: Scenario, microphone: Microphone) -> Micropho
         )
     baseline = analyze_microphone(scenario, microphone)
     candidates: list[MicrophoneAnalysis] = []
+    target = next(source for source in scenario.sources if source.id == microphone.target_source)
     for position in _positions(scenario, microphone):
         if any(distance_m(position, source.position) < 0.05 for source in scenario.sources):
+            continue
+        target_distance_m = distance_m(position, target.position)
+        if not (
+            microphone.search.min_target_distance_m
+            <= target_distance_m
+            <= microphone.search.max_target_distance_m
+        ):
             continue
         for aim_deg in _aims(microphone):
             candidates.append(

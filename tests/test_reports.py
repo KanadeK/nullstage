@@ -44,6 +44,8 @@ def scenario_text() -> str:
                         "position_step_m": 0.25,
                         "aim_range_deg": 30.0,
                         "aim_step_deg": 15.0,
+                        "min_target_distance_m": 0.25,
+                        "max_target_distance_m": 1.0,
                     },
                 }
             ],

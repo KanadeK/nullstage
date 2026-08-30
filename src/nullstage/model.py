@@ -44,6 +44,8 @@ class SearchEnvelope:
     position_step_m: float
     aim_range_deg: float
     aim_step_deg: float
+    min_target_distance_m: float
+    max_target_distance_m: float
 
 
 @dataclass(frozen=True, slots=True)

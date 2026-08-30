@@ -15,6 +15,8 @@ def movable_scenario(*, envelope: SearchEnvelope | None = None) -> Scenario:
         position_step_m=0.5,
         aim_range_deg=30.0,
         aim_step_deg=15.0,
+        min_target_distance_m=0.4,
+        max_target_distance_m=1.5,
     )
     return Scenario(
         schema_version=1,
@@ -48,6 +50,7 @@ def test_optimizer_improves_margin_without_leaving_envelope() -> None:
         microphone.optimized.margin_db - microphone.baseline.margin_db
     )
     assert distance_m(microphone.baseline.position, microphone.optimized.position) <= 0.5 + 1e-12
+    assert 0.4 <= microphone.optimized.target.distance_m <= 1.5
     assert microphone.rotation_deg <= 30.0
     assert result.optimized_worst_margin_db >= result.baseline_worst_margin_db
 
@@ -105,6 +108,8 @@ def test_optimizer_prefers_baseline_when_every_candidate_ties() -> None:
             position_step_m=0.5,
             aim_range_deg=30.0,
             aim_step_deg=15.0,
+            min_target_distance_m=0.4,
+            max_target_distance_m=1.5,
         ),
     )
     scenario = Scenario(
@@ -127,6 +132,8 @@ def test_optimizer_rejects_candidate_explosion_before_search() -> None:
             position_step_m=0.01,
             aim_range_deg=180.0,
             aim_step_deg=0.1,
+            min_target_distance_m=0.4,
+            max_target_distance_m=1.5,
         )
     )
 

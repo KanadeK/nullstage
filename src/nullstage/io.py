@@ -154,8 +154,29 @@ def _parse_search(value: Any, path: str) -> SearchEnvelope:
     _fields(
         item,
         path,
-        {"move_radius_m", "position_step_m", "aim_range_deg", "aim_step_deg"},
+        {
+            "move_radius_m",
+            "position_step_m",
+            "aim_range_deg",
+            "aim_step_deg",
+            "min_target_distance_m",
+            "max_target_distance_m",
+        },
     )
+    min_target_distance_m = _number(
+        item["min_target_distance_m"],
+        f"{path}.min_target_distance_m",
+        minimum=0.05,
+        maximum=20.0,
+    )
+    max_target_distance_m = _number(
+        item["max_target_distance_m"],
+        f"{path}.max_target_distance_m",
+        minimum=0.05,
+        maximum=20.0,
+    )
+    if min_target_distance_m > max_target_distance_m:
+        raise ScenarioError(f"{path}.min_target_distance_m must be <= max_target_distance_m")
     return SearchEnvelope(
         move_radius_m=_number(
             item["move_radius_m"], f"{path}.move_radius_m", minimum=0.0, maximum=5.0
@@ -172,6 +193,8 @@ def _parse_search(value: Any, path: str) -> SearchEnvelope:
         aim_step_deg=_number(
             item["aim_step_deg"], f"{path}.aim_step_deg", minimum=0.1, maximum=180.0
         ),
+        min_target_distance_m=min_target_distance_m,
+        max_target_distance_m=max_target_distance_m,
     )
 
 
@@ -230,6 +253,17 @@ def _parse_microphones(
         for source in sources:
             if distance_m(microphone.position, source.position) < 0.05:
                 raise ScenarioError(f"{path} and source {source.id} must be at least 0.05 m apart")
+        target = next(source for source in sources if source.id == microphone.target_source)
+        target_distance_m = distance_m(microphone.position, target.position)
+        if not (
+            microphone.search.min_target_distance_m
+            <= target_distance_m
+            <= microphone.search.max_target_distance_m
+        ):
+            raise ScenarioError(
+                f"{path} baseline target distance {target_distance_m:.3f} m is outside "
+                f"search.min_target_distance_m..max_target_distance_m"
+            )
         result.append(microphone)
     return tuple(result)
 

@@ -31,6 +31,8 @@ def scenario_with_two_equal_spills() -> Scenario:
                     position_step_m=0.25,
                     aim_range_deg=0.0,
                     aim_step_deg=15.0,
+                    min_target_distance_m=0.5,
+                    max_target_distance_m=1.5,
                 ),
             ),
         ),

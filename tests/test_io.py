@@ -30,6 +30,8 @@ def valid_payload() -> dict[str, object]:
                     "position_step_m": 0.25,
                     "aim_range_deg": 30.0,
                     "aim_step_deg": 15.0,
+                    "min_target_distance_m": 0.25,
+                    "max_target_distance_m": 1.0,
                 },
             }
         ],
@@ -54,6 +56,12 @@ def test_parse_valid_scenario() -> None:
         ),
         (lambda data: data["sources"][0].update({"x_m": 8.1}), "inside the stage"),
         (lambda data: data["stage"].update({"width_m": float("nan")}), "finite number"),
+        (
+            lambda data: data["microphones"][0]["search"].update(  # type: ignore[index]
+                {"min_target_distance_m": 1.1}
+            ),
+            "min_target_distance_m must be <= max_target_distance_m",
+        ),
     ],
 )
 def test_parse_rejects_invalid_scenario(mutate: object, message: str) -> None:
