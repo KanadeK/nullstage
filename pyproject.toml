@@ -36,6 +36,9 @@ Repository = "https://github.com/KanadeK/nullstage.git"
 Issues = "https://github.com/KanadeK/nullstage/issues"
 Changelog = "https://github.com/KanadeK/nullstage/blob/main/CHANGELOG.md"
 
+[project.scripts]
+nullstage = "nullstage.cli:main"
+
 [dependency-groups]
 dev = [
   "build>=1.2.2",
