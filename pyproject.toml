@@ -1,0 +1,75 @@
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "nullstage"
+version = "0.1.0"
+description = "Preflight microphone spill geometry before rehearsal"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+  { name = "KanadeK", email = "121669563+KanadeK@users.noreply.github.com" },
+]
+keywords = ["audio", "live-sound", "microphone", "offline", "stage-plot"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: End Users/Desktop",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Multimedia :: Sound/Audio",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/KanadeK/nullstage"
+Documentation = "https://github.com/KanadeK/nullstage#readme"
+Repository = "https://github.com/KanadeK/nullstage.git"
+Issues = "https://github.com/KanadeK/nullstage/issues"
+Changelog = "https://github.com/KanadeK/nullstage/blob/main/CHANGELOG.md"
+
+[dependency-groups]
+dev = [
+  "build>=1.2.2",
+  "hatchling==1.27.0",
+  "mypy>=1.15",
+  "pytest>=8.3",
+  "pytest-cov>=6.0",
+  "ruff>=0.11",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/nullstage"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["--strict-config", "--strict-markers"]
+
+[tool.coverage.run]
+branch = true
+source = ["nullstage"]
+
+[tool.coverage.report]
+fail_under = 90
+show_missing = true
+skip_covered = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["src"]
