@@ -27,10 +27,12 @@ def run(
     env: dict[str, str] | None = None,
 ) -> subprocess.CompletedProcess[str]:
     print(f"+ {' '.join(command)}", flush=True)
+    process_env = os.environ.copy() if env is None else env.copy()
+    process_env["PYTHONIOENCODING"] = "utf-8"
     result = subprocess.run(
         command,
         cwd=cwd,
-        env=env,
+        env=process_env,
         text=True,
         encoding="utf-8",
         errors="replace",
@@ -251,6 +253,8 @@ def clean_install_smoke(wheel: Path) -> None:
 
 
 def main() -> int:
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
     if UV is None:
         raise RuntimeError("uv is required for the release gate")
     reset_gate_root()
