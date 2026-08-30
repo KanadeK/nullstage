@@ -3,11 +3,12 @@
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.coverage
 __pycache__/
 *.py[cod]
 build/
 dist/
+release-assets/
 *.egg-info/
 .tmp/
 out/
-

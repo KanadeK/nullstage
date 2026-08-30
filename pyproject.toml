@@ -52,6 +52,25 @@ dev = [
 [tool.hatch.build.targets.wheel]
 packages = ["src/nullstage"]
 
+[tool.hatch.build.targets.sdist]
+include = [
+  "/.github",
+  "/docs",
+  "/examples",
+  "/scripts",
+  "/src",
+  "/tests",
+  "/CHANGELOG.md",
+  "/CONTRIBUTING.md",
+  "/LICENSE",
+  "/README.md",
+  "/README.zh-CN.md",
+  "/SECURITY.md",
+  "/pyproject.toml",
+  "/uv.lock",
+  "/uv.toml",
+]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = ["--strict-config", "--strict-markers"]
